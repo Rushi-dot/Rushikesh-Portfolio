@@ -1,0 +1,64 @@
+/* ============================================================================
+   Loader — CSS Module
+   ============================================================================ */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-loader);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-primary);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.counter {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 200;
+  letter-spacing: -0.04em;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+/* Variant: cinematic — larger counter, accent glow */
+.cinematic .counter {
+  background: linear-gradient(135deg, var(--color-text-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Variant: minimal — small counter, no bar */
+.minimal .counter {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 300;
+}
+
+.minimal .progressTrack {
+  display: none;
+}
+
+/* Progress bar */
+
+.progressTrack {
+  width: clamp(180px, 40vw, 320px);
+  height: 2px;
+  border-radius: var(--radius-full);
+  background: hsla(0, 0%, 100%, 0.08);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  transition: width 60ms linear;
+}

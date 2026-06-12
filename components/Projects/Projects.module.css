@@ -1,0 +1,533 @@
+/* ============================================================================
+   Projects Section — Stacked Sticky Card Showcase
+   ============================================================================
+   Premium Awwwards-inspired stacked sticky cards.
+   - Cards use position: sticky with shared top offset
+   - Increasing z-index so newer cards cover older ones
+   - Negative margin-top to start overlap before sticky point
+   - Black cards, thin white border, large border-radius
+   - No rotation, no horizontal movement, no dramatic scaling
+   ============================================================================ */
+
+/* ---------------------------------------------------------------------------
+   Section Wrapper
+   --------------------------------------------------------------------------- */
+
+.projectsSection {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+
+  border-top-left-radius: 64px;
+  border-top-right-radius: 64px;
+
+  margin-top: -40px;
+  padding-top: 20px;
+  padding-bottom: 200px;
+
+  overflow: visible;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1500px;
+}
+
+/* ---------------------------------------------------------------------------
+   Section Header
+   --------------------------------------------------------------------------- */
+
+/* .sectionHeader {
+  padding: 10rem 0 6rem;
+  text-align: center;
+  position: relative;
+  z-index: 0;
+} */
+
+.sectionLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+}
+
+.sectionLabelDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 12px var(--color-accent);
+}
+
+/* .sectionTitle {
+  font-family: 'Clash Display', sans-serif;
+  font-size: clamp(6rem, 14vw, 12rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.08em;
+
+  text-align: center;
+  width: 100%;
+
+  color: #000000;
+
+  margin: 0 auto 4rem;
+} */
+
+.sectionTitle {
+  font-family: 'Clash Display', sans-serif;
+  /* font-size: clamp(6rem, 14vw, 12rem); */
+  font-size: clamp(5rem, 11vw, 10rem);
+  font-weight: 600;
+  letter-spacing: -0.08em;
+  text-align: center;
+
+  color: #000000D9;
+}
+
+.sectionTitleAccent {
+  background: linear-gradient(135deg,
+      var(--color-accent) 0%,
+      hsl(36, 100%, 72%) 50%,
+      var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---------------------------------------------------------------------------
+   Card Stack Wrapper — holds all sticky cards
+   --------------------------------------------------------------------------- */
+
+.cardsStack {
+  position: relative;
+  margin-top: 3rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---------------------------------------------------------------------------
+   Individual Sticky Card Wrapper
+   --------------------------------------------------------------------------- */
+
+
+.cardWrapper {
+  position: sticky;
+  top: var(--sticky-top);
+  width: 88vw;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.cardWrapper:not(:first-child) {
+  margin-top: 120px;
+}
+
+@media (max-width: 1024px) {
+  .cardWrapper:not(:first-child) {
+    margin-top: -380px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Project Card — Black with white border
+   --------------------------------------------------------------------------- */
+
+.projectCard {
+  position: relative;
+  width: 100%;
+  height: clamp(650px, 85vh, 950px);
+  min-height: 700px;
+
+  background-color: #ffffff;
+
+  border-radius: 60px;
+  border: 2px solid rgba(0, 0, 0, 0.95);
+
+  transform-origin: top center;
+
+  overflow: hidden;
+  box-shadow:
+    0 30px 80px -20px rgba(0, 0, 0, 0.08),
+    0 10px 30px -15px rgba(0, 0, 0, 0.05);
+
+  /* Performance: Hardware acceleration / Compositor isolation */
+  will-change: transform, opacity;
+  transform: translateZ(0);
+
+  /* Performance: Animate only specific properties, avoid transition: all */
+  transition: transform 0.5s var(--ease-cinematic), translate 0.5s var(--ease-cinematic), box-shadow 0.5s var(--ease-cinematic);
+}
+
+.projectCard:hover {
+  translate: 0 -2px;
+  box-shadow:
+    0 40px 100px -25px rgba(0, 0, 0, 0.12),
+    0 15px 40px -20px rgba(0, 0, 0, 0.07);
+}
+
+/* Hardware accelerated scroll-driven stacking card shrink & fade */
+@supports (animation-timeline: view()) {
+  .projectCard {
+    animation: none;
+    /* animation: scaleAndFade linear both;
+    animation-timeline: view();
+    animation-range: exit 0% exit 100%; */
+  }
+}
+
+@keyframes scaleAndFade {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(0.92);
+    opacity: 0.75;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Subtle ECG/Image Background
+   --------------------------------------------------------------------------- */
+
+.cardImageBackground {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.backgroundImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  opacity: 0.22;
+
+  /* Smooth fade to transparency on the left */
+  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* ---------------------------------------------------------------------------
+   Card Content Container
+   --------------------------------------------------------------------------- */
+
+.cardContent {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 4.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ---------------------------------------------------------------------------
+   Top Row — Number & Tags
+   --------------------------------------------------------------------------- */
+
+.topRow {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+/* Project number — large, light grey */
+.projectNumber {
+  font-family: var(--font-heading);
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: rgba(0, 0, 0, 0.08);
+  user-select: none;
+}
+
+/* Technology Tags */
+.tagsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.techTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.05);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #1f2937;
+  user-select: none;
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.techTag:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #000000;
+}
+
+.tagDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 0.45rem;
+  flex-shrink: 0;
+}
+
+.dotBlue {
+  background-color: #3b82f6;
+}
+
+.dotOrange {
+  background-color: #f97316;
+}
+
+.dotNavy {
+  background-color: #6366f1;
+}
+
+.dotGreen {
+  background-color: #10b981;
+}
+
+/* ---------------------------------------------------------------------------
+   Middle Section — Title & Description
+   --------------------------------------------------------------------------- */
+
+.middleSection {
+  margin-top: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Title */
+.projectTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  margin: 0;
+  max-width: 600px;
+}
+
+/* Description */
+.projectDesc {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #475569;
+  max-width: 620px;
+  margin-top: 1.25rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Bottom Row — Buttons
+   --------------------------------------------------------------------------- */
+
+.bottomRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Primary Black Button */
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  background: #000000;
+  border-radius: var(--radius-full);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primaryButton:hover {
+  background: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Light Secondary Button */
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: var(--radius-full);
+  color: #1f2937;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #000000;
+  transform: translateY(-2px);
+}
+
+/* ---------------------------------------------------------------------------
+   End-of-Stack Spacer — releases sticky stack, continues normal scroll
+   --------------------------------------------------------------------------- */
+
+.stackSpacer {
+  height: 5vh;
+  width: 100%;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Responsive — Tablet / Mobile
+   --------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .projectCard {
+    height: auto;
+    min-height: 520px;
+  }
+
+  .cardContent {
+    padding: 3.5rem;
+  }
+
+  .sectionHeader {
+    padding: 8rem 0 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionHeader {
+    padding: 6rem 2rem 3rem;
+  }
+
+  .sectionTitle {
+    font-size: clamp(2.25rem, 10vw, 3.5rem);
+  }
+
+  .cardWrapper {
+    width: 95vw;
+    --sticky-top: calc(60px + var(--card-index) * 20px);
+    top: var(--sticky-top);
+  }
+
+  .cardWrapper:not(:first-child) {
+    margin-top: -300px;
+  }
+
+  .projectCard {
+    height: auto;
+    min-height: 460px;
+    border-radius: 36px;
+  }
+
+  .cardImageBackground {
+    width: 100%;
+    opacity: 0.12;
+  }
+
+  .cardContent {
+    padding: 2.5rem 2rem;
+  }
+
+  .topRow {
+    gap: 1.5rem;
+  }
+
+  .projectNumber {
+    font-size: 4rem;
+  }
+
+  .projectTitle {
+    font-size: 1.85rem;
+    max-width: 100%;
+  }
+
+  .projectDesc {
+    font-size: 0.95rem;
+    max-width: 100%;
+    margin-top: 1rem;
+  }
+
+  .bottomRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    padding: 0.9rem 1.5rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .stackSpacer {
+    height: 30vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardWrapper {
+    width: 97vw;
+    --sticky-top: calc(50px + var(--card-index) * 15px);
+    top: var(--sticky-top);
+  }
+
+  .cardWrapper:not(:first-child) {
+    margin-top: -260px;
+  }
+
+  .projectCard {
+    border-radius: 28px;
+    min-height: 420px;
+  }
+
+  .cardContent {
+    padding: 2rem 1.5rem;
+  }
+
+  .projectNumber {
+    font-size: 3.5rem;
+  }
+
+  .topRow {
+    gap: 1rem;
+  }
+
+  .techTag {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.8rem;
+  }
+}

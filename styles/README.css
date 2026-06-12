@@ -1,0 +1,15 @@
+/* ============================================================================
+   styles/ — Shared CSS Modules & Mixins
+   ============================================================================
+   
+   This directory holds shared CSS Modules that can be composed into
+   component-level modules. Use for cross-cutting visual patterns:
+   
+   - animations.module.css  — shared keyframe classes
+   - typography.module.css  — heading / body text patterns
+   - layout.module.css      — grid / section layout patterns
+   
+   Individual component styles live next to their components in:
+     components/<Name>.module.css
+   
+   ============================================================================ */
