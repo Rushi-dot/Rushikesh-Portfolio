@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Rushikesh Portfolio
+
+Professional AI Developer & Full Stack Developer portfolio showcasing projects, skills, and experience.
+
+Welcome to my professional developer portfolio. I am an AI Developer & Full Stack Developer focused on building high-performance, intelligent, and visually striking web applications. This portfolio features a high-fidelity cinematic landing page, custom WebGL/Three.js interactive particle simulations, and a stacked sticky project cards showcase with hardware-accelerated animations.
+
+---
+
+## Features
+
+* **Cinematic Landing Page**: Immersive blurred background overlays, full-screen HTML5 video background, and synced media state controllers.
+* **Three.js Particle Simulation**: Interactive WebGL floating bokeh particle layer with interactive mouse parallax and physics.
+* **Sticky Stacking Project Showcase**: Overlay project cards pinned on scroll viewport coordinates with Framer Motion scale-down transitions.
+* **Optimized Rendering**: Native CSS containment via `content-visibility` and bundle-splitting with Next.js dynamic routing.
+* **Core Web Vitals Optimized**: Eliminated layout shifts (CLS), minimized JS load payloads, and resolved interaction delays.
+* **Modern CSS System**: Tailored HSL colors, responsive typography breakpoints, and custom CSS variables.
+
+---
+
+## Tech Stack
+
+### Core Frameworks & Libraries
+* **Next.js** `16.2.9` (App Router)
+* **React.js** `19.2.4`
+* **React DOM** `19.2.4`
+
+### WebGL & Animations
+* **Three.js** `^0.184.0` (Native WebGL context)
+* **Framer Motion** `^12.40.0` (Initial entrance reveals and stacking scroll-linked transforms)
+* **GSAP & @gsap/react** `^3.15.0` / `^2.1.2` (Coordination timelines & preloader tracking)
+* **Lenis** `^1.3.23` (Cinematic smooth scroll mechanics)
+
+### Styling & Tools
+* **Tailwind CSS v4** (Modern utility-first styling engine)
+* **PostCSS** (Automated CSS transformations)
+* **ESLint** (Static code quality verification)
+
+---
 
 ## Getting Started
 
-First, run the development server:
+Follow these steps to run the portfolio locally:
 
+### 1. Install Dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Run Local Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the portfolio.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Build & Production
 
-## Learn More
+### 1. Create a Production Build
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 2. Run the Production Server
+```bash
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+This portfolio is fully optimized for deployment on the **Vercel Platform**. 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To deploy, connect this repository to your Vercel account or deploy via the Vercel CLI:
+```bash
+vercel
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Selected Projects
+
+* **Arrhythmia Prediction Using Deep Learning**: 1D-CNN classification model trained on ECG features (MIT-BIH database) with a Flask web application.
+* **Pinterest Clone**: MERN stack masonry grid application with secure auth and dynamic discovery engines.
+* **CreatorPulse**: AI-driven NLP analytics engine predicting social engagement.
+* **AI Code Assistant**: Contextual coding companion using LLMs.
+
+---
+
+## Contact
+
+* **GitHub**: [@Rushi-dot](https://github.com/Rushi-dot)
+* **LinkedIn**: [Rushikesh Watane](https://www.linkedin.com/in/rushikesh-watane-39291a290/)
+* **Email**: [rushipatilwatane1234@gmail.com](mailto:rushipatilwatane1234@gmail.com)
+
+---
+
+## License
+
+This project is licensed under the MIT License.
